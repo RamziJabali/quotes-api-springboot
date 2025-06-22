@@ -30,6 +30,6 @@ class QuoteService(
 
     @Transactional(readOnly = true)
     fun getQuotesByTag(tagName: String): List<Quote>{
-        return quoteRepository.findByTagsName(tagName)
+        return quoteRepository.findByTags_Name(tagName)
     }
 }
