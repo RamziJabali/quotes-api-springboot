@@ -6,18 +6,21 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import ramzi.eljabali.quotes.db.dto.QuoteRequest
-import ramzi.eljabali.quotes.db.entities.Quote
+import ramzi.eljabali.quotes.db.dto.quotes.QuoteRequest
+import ramzi.eljabali.quotes.db.dto.quotes.QuoteResponse
 import ramzi.eljabali.quotes.service.QuoteService
 
 @RestController
 @RequestMapping("/quotes")
-class QuotesController(private val quoteService: QuoteService) {
+class QuoteController(private val quoteService: QuoteService) {
     @PostMapping
     fun addQuote(@RequestBody request: QuoteRequest) = quoteService.createQuote(request)
 
     @GetMapping("/tag/{tagName}")
-    fun getQuotesTag(@PathVariable tagName: String): List<Quote> {
+    fun getQuotesTag(@PathVariable tagName: String): List<QuoteResponse> {
         return quoteService.getQuotesByTag(tagName)
     }
+
+    @GetMapping("/random")
+    fun getRandomQuote(): QuoteResponse = quoteService.getRandomQuote()
 }

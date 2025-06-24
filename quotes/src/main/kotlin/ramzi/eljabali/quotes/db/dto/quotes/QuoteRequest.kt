@@ -1,4 +1,4 @@
-package ramzi.eljabali.quotes.db.dto
+package ramzi.eljabali.quotes.db.dto.quotes
 
 
 data class QuoteRequest(
